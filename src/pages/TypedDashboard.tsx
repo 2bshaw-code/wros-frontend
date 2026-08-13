@@ -1,0 +1,8 @@
+import { Activity, MessageSquare, Package, ShoppingCart } from 'lucide-react'
+import { ConsoleShell } from '../components/ConsoleShell'
+
+const widgets = [['Orders today', '24', ShoppingCart], ['Customers', '128', Activity], ['Catalog items', '64', Package], ['Messages handled', '342', MessageSquare]] as const
+
+export default function TypedDashboard() {
+  return <ConsoleShell><div className="space-y-7"><div><p className="text-sm font-semibold text-[#128C7E]">Workspace overview</p><h1 className="mt-1 text-3xl font-bold">Dashboard</h1><p className="mt-2 text-gray-600 dark:text-gray-300">A clear view of today’s merchant operations.</p></div><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{widgets.map(([label, value, Icon]) => <div key={label} className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-[#263238] dark:bg-[#202C33]"><Icon className="text-[#128C7E]" size={21} /><p className="mt-5 text-sm text-gray-500 dark:text-gray-300">{label}</p><p className="mt-1 text-3xl font-bold">{value}</p></div>)}</div><div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-[#263238] dark:bg-[#202C33]"><h2 className="text-lg font-semibold">Recent activity</h2><div className="mt-5 grid gap-3 text-sm text-gray-600 dark:text-gray-300"><p className="border-b border-gray-100 pb-3 dark:border-[#263238]">Order #WROS-1042 moved to processing.</p><p className="border-b border-gray-100 pb-3 dark:border-[#263238]">New customer conversation received on WhatsApp.</p><p>Inventory review is ready for this workspace.</p></div></div></div></ConsoleShell>
+}

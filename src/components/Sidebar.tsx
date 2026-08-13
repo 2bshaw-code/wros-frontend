@@ -1,0 +1,7 @@
+import { NavLink } from 'react-router-dom'
+import { BookOpen, LayoutDashboard, Settings, ShieldCheck, Users } from 'lucide-react'
+import logo from '/wros-logo.svg'
+
+const links = [['/dashboard', 'Dashboard', LayoutDashboard], ['/crm', 'CRM', Users], ['/docs', 'Docs', BookOpen], ['/legal', 'Legal', ShieldCheck], ['/settings', 'Settings', Settings]] as const
+
+export default function Sidebar() { return <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-[#EDEDED] bg-white dark:border-[#263238] dark:bg-[#202C33] md:block"><div className="flex h-20 items-center gap-3 border-b border-[#EDEDED] px-6 dark:border-[#263238]"><img src={logo} alt="WROS" className="h-12 w-12 object-contain" /><div><p className="font-bold">WROS</p><p className="text-xs text-gray-500">Retail OS</p></div></div><nav className="space-y-1 p-4" aria-label="Main navigation">{links.map(([to, label, Icon]) => <NavLink key={to} to={to} className={({ isActive }) => `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-[#0FA958] text-white' : 'text-gray-700 hover:bg-[#F5F6F7] dark:text-gray-200 dark:hover:bg-[#2A3942]'}`}><Icon size={18} />{label}</NavLink>)}</nav></aside> }

@@ -1,0 +1,2 @@
+import { PageShell } from './Dashboard.tsx'
+export default function Docs() { return <PageShell><article className="prose max-w-3xl dark:prose-invert"><p className="text-sm font-semibold text-[#128C7E]">WROS resources</p><h1>Documentation</h1><p>Use the WROS API and console to manage tenant-scoped catalog, customers, orders, CRM, messaging, and automation workflows.</p><h2>Authenticated API access</h2><p>Requests use the JWT issued at sign-in and include the active tenant context automatically.</p></article></PageShell> }

@@ -1,0 +1,10 @@
+import { useEffect, useState } from 'react'
+import { ConsoleShell } from '../components/ConsoleShell'
+import { fetchCustomers } from '../services/consoleApi'
+import type { Customer } from '../types/console'
+
+export default function TypedCRM() {
+  const [customers, setCustomers] = useState<Customer[]>([]); const [loading, setLoading] = useState(true); const [error, setError] = useState('')
+  useEffect(() => { fetchCustomers().then(setCustomers).catch((requestError: any) => setError(requestError.response?.data?.error?.message || 'Unable to load CRM data')).finally(() => setLoading(false)) }, [])
+  return <ConsoleShell><div className="space-y-6"><div><p className="text-sm font-semibold text-[#128C7E]">Customer relationships</p><h1 className="mt-1 text-3xl font-bold">CRM</h1><p className="mt-2 text-gray-600 dark:text-gray-300">Tenant-scoped customer records and conversation context.</p></div><div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-[#263238] dark:bg-[#202C33]">{error && <p className="p-4 text-sm text-red-600">{error}</p>}<table className="w-full text-left text-sm"><thead className="bg-gray-50 text-xs uppercase text-gray-500 dark:bg-[#2A3942] dark:text-gray-300"><tr><th className="px-5 py-3">Customer</th><th className="px-5 py-3">Email</th><th className="px-5 py-3">Phone</th><th className="px-5 py-3">Tags</th></tr></thead><tbody>{loading ? <tr><td className="px-5 py-6" colSpan={4}>Loading customer records...</td></tr> : customers.length ? customers.map((customer) => <tr key={customer._id} className="border-t border-gray-100 dark:border-[#263238]"><td className="px-5 py-4 font-medium">{customer.name}</td><td className="px-5 py-4 text-gray-500">{customer.email || '—'}</td><td className="px-5 py-4 text-gray-500">{customer.phone || '—'}</td><td className="px-5 py-4 text-gray-500">{customer.tags?.join(', ') || '—'}</td></tr>) : <tr><td className="px-5 py-6 text-gray-500" colSpan={4}>No customers found for this tenant.</td></tr>}</tbody></table></div></div></ConsoleShell>
+}

@@ -1,0 +1,3 @@
+import { ConsoleShell } from '../components/ConsoleShell'
+
+export default function TypedDocs() { return <ConsoleShell><article className="prose max-w-3xl dark:prose-invert"><p className="text-sm font-semibold text-[#128C7E]">WROS resources</p><h1>Documentation</h1><p>Use the WROS API and operator console to manage tenant-scoped catalog, customer, order, CRM, messaging, and automation workflows.</p><h2>API access</h2><p>Authenticated requests use the access token issued at sign-in. The console automatically sends the active tenant context with each API request.</p><h2>Operational support</h2><p>Use the CRM and messaging areas to review customer history and respond to conversations within the merchant workspace.</p></article></ConsoleShell> }
