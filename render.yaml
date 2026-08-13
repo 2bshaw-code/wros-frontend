@@ -4,11 +4,6 @@ services:
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://api.wros.co.uk/api
-      - key: VITE_HOSTING_URL
-        value: https://console.wros.co.uk
     routes:
       - type: rewrite
         source: /*
