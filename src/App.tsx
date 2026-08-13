@@ -14,6 +14,7 @@ import { useAppStore } from './store/useAppStore'
 
 export default function App() {
   const theme = useAppStore((state) => state.theme)
+  const token = useAppStore((state) => state.token)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -37,7 +38,7 @@ export default function App() {
       </Route>
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to={token ? '/dashboard' : '/login'} replace />} />
     </Routes>
   )
 }

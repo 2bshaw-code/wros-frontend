@@ -1,10 +1,14 @@
 import axios from 'axios'
 import { useAppStore } from '../store/useAppStore'
 
-const fallbackApiUrl = 'https://api.wros.co.uk/api'
+const apiBaseUrl = import.meta.env.VITE_API_URL
+
+if (!apiBaseUrl) {
+  throw new Error('VITE_API_URL must be configured.')
+}
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? fallbackApiUrl,
+  baseURL: apiBaseUrl,
   headers: {
     'Content-Type': 'application/json',
   },

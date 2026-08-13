@@ -35,7 +35,6 @@ export const useAppStore = create<AppState>()(
     {
       name: 'wros-console-store',
       partialize: (state) => ({
-        token: state.token,
         user: state.user,
         theme: state.theme,
       }),
