@@ -1,32 +1,46 @@
-# React + TypeScript + Vite
+# WROS Console Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+WROS Console frontend built with Vite, React, and TypeScript.
 
-Currently, two official plugins are available:
+## Routes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `/login`
+- `/register`
+- `/dashboard`
+- `/crm`
+- `/docs`
+- `/legal`
+- `/settings`
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- JWT authentication (login and register)
+- Protected routes (redirects to `/login` when unauthenticated)
+- Sidebar navigation with active route state
+- Responsive dashboard layout
+- Light/dark theme toggle
+- Global state management with Zustand
+- Axios API client with `VITE_API_URL`
 
-## Expanding the Oxlint configuration
+## Local development
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Build
+
+```bash
+npm run build
+```
+
+## Render settings
+
+- Build command: `npm install && npm run build`
+- Publish directory: `dist`
+
+## Environment variables
+
+- `VITE_API_URL=https://api.wros.co.uk/api`
+- `HOSTING_URL=https://console.wros.co.uk`
