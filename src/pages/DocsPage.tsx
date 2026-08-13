@@ -12,7 +12,7 @@ export default function DocsPage() {
       <h2>Authentication</h2>
       <p>
         All API requests require a valid JWT token passed in the <code>Authorization</code>{' '}
-        header as <code>{'******'}</code>. Tokens are issued on login and expire
+        header as <code>{'Authorization: ******'}</code>. Tokens are issued on login and expire
         after 24 hours.
       </p>
 

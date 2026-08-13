@@ -14,7 +14,7 @@ interface SidebarProps {
   onClose: () => void
 }
 
-export default function Sidebar({ open }: SidebarProps) {
+export default function Sidebar({ open, onClose }: SidebarProps) {
   const user = useAuthStore((s) => s.user)
   const logout = useAuthStore((s) => s.logout)
 
@@ -26,6 +26,7 @@ export default function Sidebar({ open }: SidebarProps) {
           <NavLink
             key={to}
             to={to}
+            onClick={onClose}
             className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
           >
             <span className="nav-icon">{icon}</span>

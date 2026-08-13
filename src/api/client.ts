@@ -5,8 +5,19 @@ const apiClient = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
+function getStoredToken(): string | null {
+  try {
+    const raw = localStorage.getItem('wros-auth')
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as { state?: { token?: string } }
+    return parsed?.state?.token ?? null
+  } catch {
+    return null
+  }
+}
+
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('wros_token')
+  const token = getStoredToken()
   if (token) {
     config.headers.Authorization = 'Bearer ' + token
   }
@@ -17,7 +28,6 @@ apiClient.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      localStorage.removeItem('wros_token')
       window.location.href = '/login'
     }
     return Promise.reject(err)

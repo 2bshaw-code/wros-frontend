@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import useAuthStore from '../store/authStore'
 
 export default function SettingsPage() {
   const theme = useAuthStore((s) => s.theme)
   const toggleTheme = useAuthStore((s) => s.toggleTheme)
   const user = useAuthStore((s) => s.user)
+  const [emailNotifs, setEmailNotifs] = useState(true)
+  const [twoFactor, setTwoFactor] = useState(false)
 
   return (
     <div className="settings-section">
@@ -40,7 +43,7 @@ export default function SettingsPage() {
           <p>Receive updates and alerts by email</p>
         </div>
         <label className="toggle">
-          <input type="checkbox" defaultChecked aria-label="Toggle email notifications" />
+        <input type="checkbox" checked={emailNotifs} onChange={(e) => setEmailNotifs(e.target.checked)} aria-label="Toggle email notifications" />
           <span className="toggle-slider" />
         </label>
       </div>
@@ -51,7 +54,7 @@ export default function SettingsPage() {
           <p>Add an extra layer of security to your account</p>
         </div>
         <label className="toggle">
-          <input type="checkbox" aria-label="Toggle two-factor authentication" />
+          <input type="checkbox" checked={twoFactor} onChange={(e) => setTwoFactor(e.target.checked)} aria-label="Toggle two-factor authentication" />
           <span className="toggle-slider" />
         </label>
       </div>

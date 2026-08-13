@@ -32,7 +32,6 @@ const useAuthStore = create<AuthState>()(
           email,
           password,
         })
-        localStorage.setItem('wros_token', data.token)
         set({ token: data.token, user: data.user, isAuthenticated: true })
       },
 
@@ -42,12 +41,10 @@ const useAuthStore = create<AuthState>()(
           email,
           password,
         })
-        localStorage.setItem('wros_token', data.token)
         set({ token: data.token, user: data.user, isAuthenticated: true })
       },
 
       logout: () => {
-        localStorage.removeItem('wros_token')
         set({ token: null, user: null, isAuthenticated: false })
       },
 
