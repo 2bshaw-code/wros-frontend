@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useThemeStore } from './store/themeStore';
+import { useAuthStore } from './store/authStore';
 import ProtectedRoute from './components/ProtectedRoute';
 import AppLayout from './components/layout/AppLayout';
 import Login from './pages/Login';
@@ -10,9 +11,11 @@ import CRM from './pages/CRM';
 import Docs from './pages/Docs';
 import Legal from './pages/Legal';
 import Settings from './pages/Settings';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   const theme = useThemeStore((s) => s.theme);
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -38,11 +41,16 @@ export default function App() {
             <Route path="/docs" element={<Docs />} />
             <Route path="/legal" element={<Legal />} />
             <Route path="/settings" element={<Settings />} />
+            {/* 404 inside the authenticated shell */}
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
 
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        {/* Unauthenticated fallback */}
+        <Route
+          path="*"
+          element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />}
+        />
       </Routes>
     </BrowserRouter>
   );

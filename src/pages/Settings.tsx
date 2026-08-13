@@ -5,12 +5,23 @@ import { useThemeStore } from '../store/themeStore';
 export default function Settings() {
   const user = useAuthStore((s) => s.user);
   const { theme, toggleTheme } = useThemeStore();
-  const [saved, setSaved] = useState(false);
 
-  const handleSave = (e: React.FormEvent) => {
+  const [name, setName] = useState(user?.name ?? '');
+  const [email, setEmail] = useState(user?.email ?? '');
+  const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState('');
+
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    setSaveError('');
+    // TODO: wire up to PATCH /auth/me once backend supports it
+    try {
+      await Promise.resolve(); // placeholder for API call
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    } catch {
+      setSaveError('Failed to save changes. Please try again.');
+    }
   };
 
   return (
@@ -24,11 +35,17 @@ export default function Settings() {
       <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
         <h3 className="text-sm font-semibold text-fg mb-4">Profile</h3>
         <form onSubmit={handleSave} className="space-y-4">
+          {saveError && (
+            <div className="px-4 py-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-400">
+              {saveError}
+            </div>
+          )}
           <div>
             <label className="block text-xs font-medium text-muted mb-1">Name</label>
             <input
               type="text"
-              defaultValue={user?.name ?? ''}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full px-3 py-2 rounded-lg border border-border bg-input text-fg text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
@@ -36,7 +53,8 @@ export default function Settings() {
             <label className="block text-xs font-medium text-muted mb-1">Email</label>
             <input
               type="email"
-              defaultValue={user?.email ?? ''}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 rounded-lg border border-border bg-input text-fg text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
