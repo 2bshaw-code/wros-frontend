@@ -52,6 +52,7 @@ import AboutPage from './public/AboutPage.tsx'
 import PricingPage from './public/PricingPage.tsx'
 import ContactPage from './public/ContactPage.tsx'
 import SupportPage from './public/SupportPage.tsx'
+import ApplyPage from './public/ApplyPage.tsx'
 import { ConsoleFallback, MerchantRoute, OwnerRoute, RoleHome } from './routes/RoleGuards.tsx'
 
 export default function App() {
@@ -72,6 +73,7 @@ export default function App() {
 						<Route path="/pricing" element={<PricingPage />} />
 						<Route path="/contact" element={<ContactPage />} />
 						<Route path="/support" element={<SupportPage />} />
+						<Route path="/apply" element={<ApplyPage />} />
 					</Route>
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/signup" element={<Register />} />
