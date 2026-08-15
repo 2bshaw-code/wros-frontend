@@ -1,0 +1,6 @@
+import { useEffect, useState } from 'react'
+import { useQuantumAnomalies } from '../../api/quantum.ts'
+import { writeStabilityLog } from '../../stability/linkStability'
+import { QuantumPanelFrame, QuantumResult } from './QuantumPanelFrame.tsx'
+
+export default function QuantumAnomaliesPanel() { const [result, setResult] = useState<any>(null); useEffect(() => { useQuantumAnomalies().then((response) => { setResult(response.data.data.output); writeStabilityLog('quantum-anomalies', 'Quantum anomaly simulation completed', '/founder/quantum/anomalies') }) }, []); return <QuantumPanelFrame title="Quantum Anomalies" description="Mock inspection for unusual signals; no production events are evaluated."><div className="grid gap-5 lg:grid-cols-3"><QuantumResult title="Status" value={result?.status || 'Running simulation'} /><QuantumResult title="Anomalies" value={result?.anomalies || 'None detected'} /><QuantumResult title="Confidence" value={result?.confidence ? `${Math.round(result.confidence * 100)}%` : 'Pending'} /></div></QuantumPanelFrame> }

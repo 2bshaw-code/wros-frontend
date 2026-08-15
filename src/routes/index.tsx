@@ -8,5 +8,10 @@ import Docs from '../pages/Docs.tsx'
 import Legal from '../pages/Legal.tsx'
 import Settings from '../pages/Settings.tsx'
 import NotFound from '../pages/NotFound.tsx'
+import MainLayout from '../layouts/MainLayout.tsx'
+import Orders from '../pages/Orders.tsx'
+import Catalog from '../pages/Catalog.tsx'
+import Customers from '../pages/Customers.tsx'
+import Messages from '../pages/Messages.tsx'
 
-export default function AppRoutes() { return <Routes><Route path="/login" element={<Login />} /><Route path="/register" element={<Register />} /><Route element={<ProtectedRoute />}><Route path="/dashboard" element={<Dashboard />} /><Route path="/crm" element={<CRM />} /><Route path="/docs" element={<Docs />} /><Route path="/legal" element={<Legal />} /><Route path="/settings" element={<Settings />} /></Route><Route path="/" element={<Navigate to="/dashboard" replace />} /><Route path="*" element={<NotFound />} /></Routes> }
+export default function AppRoutes() { return <Routes><Route path="/login" element={<Login />} /><Route path="/register" element={<Register />} /><Route element={<ProtectedRoute />}><Route element={<MainLayout />}><Route index element={<Dashboard />} /><Route path="orders" element={<Orders />} /><Route path="catalog" element={<Catalog />} /><Route path="customers" element={<Customers />} /><Route path="messages" element={<Messages />} /><Route path="settings" element={<Settings />} /></Route><Route path="crm" element={<CRM />} /><Route path="docs" element={<Docs />} /><Route path="legal" element={<Legal />} /></Route><Route path="*" element={<NotFound />} /></Routes> }

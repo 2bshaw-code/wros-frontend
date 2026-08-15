@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://wros-backend.onrender.com/api',
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 })
@@ -19,7 +19,7 @@ axiosClient.interceptors.response.use((response) => response, (error) => {
   if (error.response?.status === 401) {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    if (!window.location.pathname.endsWith('/login')) window.location.assign('/console/login')
+    if (!window.location.pathname.endsWith('/auth/login')) window.location.assign('/auth/login')
   }
   return Promise.reject(error)
 })

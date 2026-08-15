@@ -1,0 +1,8 @@
+import { useEffect } from 'react'
+import { Megaphone, Target } from 'lucide-react'
+import StableLink from '../stability/StableLink.tsx'
+import { writeStabilityLog } from '../stability/linkStability'
+import { Header, Insight } from './FounderSales'
+
+export const marketingContext = { campaignPerformance: [{ campaign: 'Summer Brew', engagement: 0.42, roi: 3.8 }], whatsappEngagement: '42%', promotions: ['Bundle offer'], segments: ['vip', 'new'], roi: 3.8, suggestions: ['Re-engage new customers with a product education message'] }
+export default function FounderMarketing() { useEffect(() => { writeStabilityLog('founder-insight', 'Marketing dashboard context loaded', '/founder/marketing') }, []); return <div className="space-y-8"><Header title="Marketing Dashboard" description="Campaign performance, engagement, segmentation, and ROI." /><div className="grid gap-5 lg:grid-cols-3"><Insight title="Campaign performance" value="Summer Brew engagement is 42% with 3.8x ROI." /><Insight title="WhatsApp engagement" value="42% engagement across the active promotion audience." /><Insight title="Promotion effectiveness" value="Bundle offers are the strongest current promotion." /><Insight title="Customer segmentation" value="VIP and new-customer segments are ready for targeted campaigns." /><Insight title="Suggested campaigns" value="Re-engage new customers with product education." /><Insight title="Marketing ROI" value="Current tracked return is 3.8x." /></div><StableLink to="/founder/bob" className="inline-flex items-center gap-2 rounded-lg bg-[#0FA958] px-5 py-3 font-semibold text-white hover:bg-[#0C8A48]"><Megaphone size={18} />Open Bob marketing insights</StableLink></div> }

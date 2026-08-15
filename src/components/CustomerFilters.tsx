@@ -1,0 +1,4 @@
+import { useEffect, useState } from 'react'
+
+export type CustomerFiltersState = { name: string; phone: string; email: string; address: string }
+export default function CustomerFilters({ value, onChange }: { value: CustomerFiltersState; onChange: (next: CustomerFiltersState) => void }) { const [draft, setDraft] = useState(value); useEffect(() => { const timer = window.setTimeout(() => onChange(draft), 300); return () => window.clearTimeout(timer) }, [draft]); return <div className="grid gap-3 rounded-xl border border-[#EDEDED] bg-white p-4 dark:border-[#263238] dark:bg-[#202C33] sm:grid-cols-2 lg:grid-cols-4">{(['name', 'phone', 'email', 'address'] as const).map((field) => <input key={field} value={draft[field]} onChange={(event) => setDraft({ ...draft, [field]: event.target.value })} placeholder={`Filter by ${field}`} className="rounded-lg border border-[#D8DEE2] px-3 py-2 dark:border-[#263238] dark:bg-[#2A3942]" />)}</div> }

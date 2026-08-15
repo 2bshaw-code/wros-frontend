@@ -1,0 +1,10 @@
+import { useEffect, useState } from 'react'
+import { Activity, Bot, Cloud, CreditCard, Database, GitBranch, HeartPulse, MessageSquare, Server, Settings } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { founderApi } from '../api/founder'
+
+const statuses = [
+  ['System health', 'Operational', HeartPulse], ['API status', 'Online', Server], ['WhatsApp status', 'Test-ready', MessageSquare], ['Stripe test status', 'Sandbox', CreditCard], ['Build status', 'Passing', GitBranch], ['Deployment status', 'Local test', Cloud], ['Versioning', 'wros-dev-build', Settings], ['Automation engine', 'Ready', Activity], ['Cloud API status', 'Configured', Database],
+] as const
+
+export default function FounderDashboard() { const [health, setHealth] = useState<any>(null); useEffect(() => { founderApi.overview().then((response) => setHealth(response.data.data)) }, []); return <div className="space-y-8"><div><p className="text-sm font-semibold text-[#6EE7A0]">Private founder workspace</p><h1 className="mt-1 text-3xl font-bold">WROS Control Centre</h1><p className="mt-2 max-w-2xl text-gray-300">System health, deployment readiness, provider state, and engineering controls.</p></div><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{statuses.map(([label, value, Icon]) => { const key = label === 'System health' ? 'backend' : label === 'API status' ? 'cloudApi' : label === 'WhatsApp status' ? 'whatsapp' : label === 'Stripe test status' ? 'stripe' : label === 'Automation engine' ? 'automation' : null; const live = key ? health?.[key]?.status || health?.[key]?.mode : null; return <article key={label} className="rounded-xl border border-[#263238] bg-[#202C33] p-5"><Icon className="text-[#6EE7A0]" size={21} /><p className="mt-5 text-sm text-gray-400">{label}</p><p className="mt-1 font-semibold">{live || value}</p></article> })}</div><Link to="/founder/bob" className="inline-flex items-center gap-2 rounded-lg bg-[#0FA958] px-5 py-3 font-semibold text-white hover:bg-[#0C8A48]"><Bot size={19} />Open Bob Engineering Console</Link></div> }

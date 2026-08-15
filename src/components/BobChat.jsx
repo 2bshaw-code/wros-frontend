@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Bot, ImagePlus, Loader, Send, Volume2, X } from 'lucide-react'
-import { useAuth } from '../context/AuthContext'
+import { useAuthStore } from '../state/authStore'
 import { askBob, getBobSpeech, uploadBobImage } from '../services/api'
 
-export const BobChat = ({ embedded = false, onClose, quickActions = [] }) => {
-  const { user } = useAuth()
+export const BobChat = ({ embedded = false, onClose, quickActions = [], context = null }) => {
+  const user = useAuthStore((state) => state.user)
   const [history, setHistory] = useState([])
   const [prompt, setPrompt] = useState('')
   const [loading, setLoading] = useState(false)
@@ -12,6 +12,13 @@ export const BobChat = ({ embedded = false, onClose, quickActions = [] }) => {
   const [uploadProgress, setUploadProgress] = useState(0)
   const [speaking, setSpeaking] = useState('')
   const [error, setError] = useState('')
+
+  const getPageContext = () => {
+    if (context) return context
+    const heading = document.querySelector('main h1, main h2, h1, h2')?.textContent?.trim() || ''
+    const consoleType = window.location.pathname.startsWith('/founder') ? 'founder' : window.location.pathname.startsWith('/console/owner') ? 'owner' : window.location.pathname.startsWith('/console/merchant') ? 'merchant' : 'public'
+    return { pageUrl: window.location.href, pageTitle: document.title, sectionHeading: heading, consoleType, actionContext: 'bob-chat-prompt' }
+  }
 
   const sendPrompt = async (nextPrompt = prompt) => {
     const text = nextPrompt.trim()
@@ -23,7 +30,7 @@ export const BobChat = ({ embedded = false, onClose, quickActions = [] }) => {
     setLoading(true)
 
     try {
-      const reply = await askBob(text, user?.id)
+      const reply = await askBob(text, user?.id, getPageContext())
       setHistory((items) => [...items, { role: 'bob', text: reply }])
     } catch (requestError) {
       setError(requestError.message)

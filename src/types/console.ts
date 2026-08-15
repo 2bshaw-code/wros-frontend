@@ -1,9 +1,10 @@
-export type Role = 'admin' | 'tenant_admin' | 'operator' | 'analyst' | 'user'
+export type Role = 'admin' | 'owner' | 'merchant' | 'manager' | 'tenant_admin' | 'operator' | 'analyst' | 'user' | 'founder_admin'
 
 export interface ConsoleUser {
   id?: string
   email: string
   role?: Role
+  founder?: boolean
   operatorRole?: Role
   tenantId?: string
   businessId?: string

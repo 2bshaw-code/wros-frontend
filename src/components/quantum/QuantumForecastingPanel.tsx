@@ -1,0 +1,6 @@
+import { useEffect, useState } from 'react'
+import { useQuantumForecasting } from '../../api/quantum.ts'
+import { writeStabilityLog } from '../../stability/linkStability'
+import { QuantumPanelFrame, QuantumResult } from './QuantumPanelFrame.tsx'
+
+export default function QuantumForecastingPanel() { const [result, setResult] = useState<any>(null); useEffect(() => { useQuantumForecasting({ horizon: '30d' }).then((response) => { setResult(response.data.data.output); writeStabilityLog('quantum-forecast', 'Quantum forecasting simulation completed', '/founder/quantum/forecasting') }) }, []); return <QuantumPanelFrame title="Quantum Forecasting" description="Mock 30-day sales and demand forecast."><div className="grid gap-5 lg:grid-cols-3"><QuantumResult title="Prediction" value={result?.prediction || 'Running simulation'} /><QuantumResult title="Confidence" value={result?.confidence ? `${Math.round(result.confidence * 100)}%` : 'Pending'} /><QuantumResult title="Forecast series" value={result?.series || 'Pending'} /></div></QuantumPanelFrame> }

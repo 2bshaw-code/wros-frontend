@@ -1,0 +1,6 @@
+import { useEffect, useState } from 'react'
+import { useQuantumOptimisation } from '../../api/quantum.ts'
+import { writeStabilityLog } from '../../stability/linkStability'
+import { QuantumPanelFrame, QuantumResult } from './QuantumPanelFrame.tsx'
+
+export default function QuantumOptimisationPanel() { const [result, setResult] = useState<any>(null); useEffect(() => { useQuantumOptimisation({ objective: 'margin' }).then((response) => { setResult(response.data.data.output); writeStabilityLog('quantum-optimisation', 'Quantum optimisation simulation completed', '/founder/quantum/optimisation') }) }, []); return <QuantumPanelFrame title="Quantum Optimisation" description="Mock recommendations for a margin-oriented operational choice."><div className="grid gap-5 lg:grid-cols-3"><QuantumResult title="Objective" value={result?.objective || 'Running simulation'} /><QuantumResult title="Recommendation" value={result?.recommendation || 'Pending'} /><QuantumResult title="Score" value={result?.score || 'Pending'} /></div></QuantumPanelFrame> }

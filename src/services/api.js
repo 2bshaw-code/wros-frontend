@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || import.meta.env.API_URL || '/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://wros-backend.onrender.com/api'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -37,7 +37,7 @@ let refreshRequest
 const clearSession = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  window.location.href = '/console/login'
+  window.location.href = '/auth/login'
 }
 
 api.interceptors.response.use(
@@ -70,9 +70,9 @@ api.interceptors.response.use(
   }
 )
 
-export const askBob = async (prompt, userId) => {
+export const askBob = async (prompt, userId, context) => {
   try {
-    const response = await api.post('/ai/ask', { prompt, userId })
+    const response = await api.post('/ai/ask', { prompt, userId, context })
     return response.data.data.reply
   } catch (error) {
     throw new Error(error.response?.data?.error?.message || error.message || 'Unable to reach BOB')
