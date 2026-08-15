@@ -6,7 +6,7 @@
     "dev": "vite",
     "dev:test": "vite --mode test",
     "start": "vite --host 0.0.0.0 --port 3001",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-route-fallbacks.mjs",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
