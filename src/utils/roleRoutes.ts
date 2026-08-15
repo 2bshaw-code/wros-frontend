@@ -1,7 +1,7 @@
 import type { ConsoleUser } from '../types/console'
 
 export const isFounder = (user: ConsoleUser | null) => Boolean(
-  user?.founder || user?.role === 'founder_admin' || user?.operatorRole === 'founder_admin'
+  user?.founder || user?.role === 'founder' || user?.role === 'founder_admin' || user?.operatorRole === 'founder' || user?.operatorRole === 'founder_admin'
 )
 
 export const isOwner = (user: ConsoleUser | null) => Boolean(

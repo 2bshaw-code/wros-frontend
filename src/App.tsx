@@ -41,13 +41,17 @@ import BobQuantumPanel from './components/quantum/BobQuantumPanel.tsx'
 import NavigationGuard from './stability/NavigationGuard.tsx'
 import HydrationStabilizer from './stability/HydrationStabilizer.tsx'
 import BobLauncher from './components/BobLauncher.tsx'
-import PublicLayout from './layouts/PublicLayout.tsx'
+import PublicLayout from './public/PublicLayout.tsx'
 import OwnerLayout from './layouts/OwnerLayout.tsx'
 import OwnerConsole from './pages/OwnerConsole.tsx'
 import MerchantAutomation from './pages/MerchantAutomation.tsx'
 import Docs from './pages/Docs.tsx'
 import Legal from './pages/Legal.tsx'
-import { AboutPage, ContactPage, HomePage, SupportPage } from './pages/PublicPages.tsx'
+import LandingPage from './public/LandingPage.tsx'
+import AboutPage from './public/AboutPage.tsx'
+import PricingPage from './public/PricingPage.tsx'
+import ContactPage from './public/ContactPage.tsx'
+import SupportPage from './public/SupportPage.tsx'
 import { ConsoleFallback, MerchantRoute, OwnerRoute, RoleHome } from './routes/RoleGuards.tsx'
 
 export default function App() {
@@ -62,9 +66,10 @@ export default function App() {
 				<NavigationGuard />
 				<Routes>
 					<Route element={<PublicLayout />}>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/home" element={<HomePage />} />
+						<Route path="/" element={<LandingPage />} />
+						<Route path="/home" element={<LandingPage />} />
 						<Route path="/about" element={<AboutPage />} />
+						<Route path="/pricing" element={<PricingPage />} />
 						<Route path="/contact" element={<ContactPage />} />
 						<Route path="/support" element={<SupportPage />} />
 					</Route>

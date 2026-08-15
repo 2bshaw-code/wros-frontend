@@ -24,6 +24,7 @@ import ThemeToggle from "../components/ThemeToggle.tsx";
 export default function FounderLayout({ children }: PropsWithChildren) {
   const navigate = useStableNavigate();
   const logout = useAuthStore((state) => state.logout);
+  const user = useAuthStore((state) => state.user);
   const signOut = () => {
     logout();
     navigate("/auth/login");
@@ -139,7 +140,7 @@ export default function FounderLayout({ children }: PropsWithChildren) {
             <p className="font-semibold">Private founder workspace</p>
             <p className="text-xs text-gray-400">WROS internal systems</p>
           </div>
-          <div className="flex items-center gap-2"><span className="rounded-full bg-[#163C2A] px-3 py-1 text-xs font-bold text-[#6EE7A0]">founder_admin</span><ThemeToggle/><button
+          <div className="flex items-center gap-2"><span className="rounded-full bg-[#163C2A] px-3 py-1 text-xs font-bold text-[#6EE7A0]">{user?.operatorRole || user?.role || "founder_admin"}</span><ThemeToggle/><a href="/" className="rounded-lg border border-[#3A4A50] px-3 py-2 text-sm font-semibold text-gray-200"><span className="sm:hidden">Website</span><span className="hidden sm:inline">Return to Website</span></a><button
             type="button"
             onClick={signOut}
             className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-[#2A3942]"

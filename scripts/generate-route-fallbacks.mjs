@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const routes = [
-  'home', 'about', 'contact', 'support',
+  'home', 'about', 'pricing', 'contact', 'support',
   'auth/login', 'auth/signup',
   'console',
   'console/merchant', 'console/merchant/orders', 'console/merchant/catalog', 'console/merchant/products', 'console/merchant/products/add', 'console/merchant/invoices/add', 'console/merchant/categories/add', 'console/merchant/inventory', 'console/merchant/inventory/add', 'console/merchant/customers', 'console/merchant/customers/add', 'console/merchant/messages', 'console/merchant/automation', 'console/merchant/docs', 'console/merchant/legal', 'console/merchant/settings',
