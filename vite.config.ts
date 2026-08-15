@@ -40,5 +40,8 @@ export default defineConfig(({ mode }) => {
       },
       proxy: { '/api': { target: 'https://wros-backend.onrender.com', changeOrigin: true } },
     },
+    build: {
+      outDir: 'dist',
+    },
   }
 })
