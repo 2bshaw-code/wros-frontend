@@ -20,6 +20,7 @@ import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import NotFound from './pages/NotFound.tsx'
 import FounderRoute from './routes/FounderRoute.tsx'
+import FoundItRoute from './routes/FoundItRoute.tsx'
 import FounderLayout from './layouts/FounderLayout.tsx'
 import FounderDashboard from './pages/FounderDashboard.tsx'
 import FounderBob from './pages/FounderBob.tsx'
@@ -32,6 +33,7 @@ import FounderActions from './pages/FounderActions.tsx'
 import FounderConfig from './pages/FounderConfig.tsx'
 import FounderLogs from './pages/FounderLogs.tsx'
 import FounderDeployments from './pages/FounderDeployments.tsx'
+import FounderFoundIt from './pages/FounderFoundIt.tsx'
 import QuantumHomePanel from './components/quantum/QuantumHomePanel.tsx'
 import QuantumForecastingPanel from './components/quantum/QuantumForecastingPanel.tsx'
 import QuantumOptimisationPanel from './components/quantum/QuantumOptimisationPanel.tsx'
@@ -116,6 +118,11 @@ export default function App() {
 					<Route path="/console/login" element={<Navigate to="/auth/login" replace />} />
 					<Route path="/console/register" element={<Navigate to="/auth/signup" replace />} />
 					{['orders','catalog','products','inventory','customers','messages','settings'].map((path) => <Route key={path} path={`/console/${path}/*`} element={<Navigate to={`/console/merchant/${path}`} replace />} />)}
+					<Route path="/founder/found-it" element={<FoundItRoute />}>
+						<Route element={<FounderLayout />}>
+							<Route index element={<FounderFoundIt />} />
+						</Route>
+					</Route>
 					<Route path="/founder" element={<FounderRoute />}>
 						<Route element={<FounderLayout />}>
 							<Route index element={<FounderDashboard />} />

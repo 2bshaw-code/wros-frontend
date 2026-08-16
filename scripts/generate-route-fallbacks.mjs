@@ -7,7 +7,7 @@ const routes = [
   'console',
   'console/merchant', 'console/merchant/orders', 'console/merchant/catalog', 'console/merchant/products', 'console/merchant/products/add', 'console/merchant/invoices/add', 'console/merchant/categories/add', 'console/merchant/inventory', 'console/merchant/inventory/add', 'console/merchant/customers', 'console/merchant/customers/add', 'console/merchant/messages', 'console/merchant/automation', 'console/merchant/docs', 'console/merchant/legal', 'console/merchant/settings',
   'console/owner', 'console/owner/onboarding', 'console/owner/analytics', 'console/owner/automation', 'console/owner/settings',
-  'founder', 'founder/overview', 'founder/health', 'founder/deployments', 'founder/system', 'founder/system/actions', 'founder/config', 'founder/logs', 'founder/bob', 'founder/bob/media', 'founder/media', 'founder/sales', 'founder/marketing', 'founder/commercial', 'founder/quantum', 'founder/quantum/forecasting', 'founder/quantum/optimisation', 'founder/quantum/anomalies', 'founder/quantum/security', 'founder/bob/quantum',
+  'founder', 'founder/overview', 'founder/health', 'founder/deployments', 'founder/system', 'founder/system/actions', 'founder/config', 'founder/logs', 'founder/bob', 'founder/bob/media', 'founder/media', 'founder/sales', 'founder/marketing', 'founder/commercial', 'founder/found-it', 'founder/quantum', 'founder/quantum/forecasting', 'founder/quantum/optimisation', 'founder/quantum/anomalies', 'founder/quantum/security', 'founder/bob/quantum',
 ]
 
 const dist = path.resolve('dist')

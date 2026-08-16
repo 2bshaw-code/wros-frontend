@@ -14,6 +14,7 @@ import {
   Settings,
   HeartPulse,
   Cloud,
+  Search,
 } from "lucide-react";
 import { useAuthStore } from "../state/authStore";
 import logo from "/wros-logo.svg";
@@ -68,6 +69,13 @@ export default function FounderLayout({ children }: PropsWithChildren) {
           >
             <Briefcase size={18} />
             Commercial
+          </StableLink>
+          <StableLink
+            to="/founder/found-it"
+            className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-gray-200 hover:bg-[#2A3942]"
+          >
+            <Search size={18} />
+            Found IT
           </StableLink>
           <StableLink
             to="/founder/system"
@@ -146,7 +154,7 @@ export default function FounderLayout({ children }: PropsWithChildren) {
             className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-[#2A3942]"
           >
             <LogOut size={17} />
-            Logout
+            <span className="hidden sm:inline">Logout</span>
           </button></div>
         </header>
         <section className="p-5 md:p-8">{children || <Outlet />}</section>

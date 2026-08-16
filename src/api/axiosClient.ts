@@ -1,7 +1,10 @@
 import axios from 'axios'
 
+const configuredApiUrl = (import.meta.env.VITE_API_URL || 'https://wros-backend.onrender.com/api').replace(/\/+$/, '')
+const apiBaseUrl = configuredApiUrl.endsWith('/api') ? configuredApiUrl : `${configuredApiUrl}/api`
+
 export const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://wros-backend.onrender.com/api',
+  baseURL: apiBaseUrl,
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 })

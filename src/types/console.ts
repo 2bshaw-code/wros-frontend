@@ -1,4 +1,4 @@
-export type Role = 'admin' | 'owner' | 'merchant' | 'manager' | 'tenant_admin' | 'operator' | 'analyst' | 'user' | 'founder' | 'founder_admin'
+export type Role = 'admin' | 'owner' | 'merchant' | 'manager' | 'tenant_admin' | 'operator' | 'analyst' | 'user' | 'founder' | 'founder_admin' | 'founder_master'
 
 export interface ConsoleUser {
   id?: string
