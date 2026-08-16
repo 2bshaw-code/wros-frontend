@@ -24,7 +24,7 @@ export default function BobLauncher() {
     <>
       {bobOpen && <BobChat onClose={() => setBobOpen(false)} />}
       <button type="button" onClick={openBobModal} className="bob-fab bg-[#0FA958] text-white" aria-label="Open BOB assistant">
-        <img src="/console/bob-logo.svg" alt="B" className="h-6 w-6" />
+        <img src="/bob-logo.svg" alt="B" className="h-6 w-6" />
       </button>
     </>
   )
